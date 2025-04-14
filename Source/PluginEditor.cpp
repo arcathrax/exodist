@@ -5,8 +5,10 @@
 exodistAudioProcessorEditor::exodistAudioProcessorEditor (exodistAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
-    // Make sure that before the constructor has finished, you've set the
-    // editor's size to whatever you need it to be.
+    gainSlider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
+    softnessSlider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
+    thresholdSlider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
+    
     setSize (600, 400);
 }
 
