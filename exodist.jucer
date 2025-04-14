@@ -9,6 +9,10 @@
     <GROUP id="{6D2800E9-FD34-2B98-E4F3-587630062054}" name="Source">
       <GROUP id="{D1DCABDF-2CCB-5087-411D-22E69A78B742}" name="GUI">
         <FILE id="kRDJYn" name="background.png" compile="0" resource="1" file="Source/GUI/background.png"/>
+        <FILE id="xogSyi" name="CustomLookAndFeel.cpp" compile="1" resource="0"
+              file="Source/GUI/CustomLookAndFeel.cpp"/>
+        <FILE id="xIckvA" name="CustomLookAndFeel.h" compile="0" resource="0"
+              file="Source/GUI/CustomLookAndFeel.h"/>
         <FILE id="zfJUsy" name="knob.png" compile="0" resource="1" file="Source/GUI/knob.png"/>
       </GROUP>
       <FILE id="a2vRXE" name="Parameters.cpp" compile="1" resource="0" file="Source/Parameters.cpp"/>
