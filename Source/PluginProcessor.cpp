@@ -162,8 +162,8 @@ bool exodistAudioProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* exodistAudioProcessor::createEditor()
 {
-    // return new PluginTemplateAudioProcessorEditor(*this);
-    return new juce::GenericAudioProcessorEditor(*this);
+    return new exodistAudioProcessorEditor(*this);
+    // return new juce::GenericAudioProcessorEditor(*this);
 }
 
 
