@@ -2,7 +2,7 @@
 #include "PluginEditor.h"
 
 
-PluginTemplateAudioProcessor::PluginTemplateAudioProcessor()
+exodistAudioProcessor::exodistAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
      : AudioProcessor (BusesProperties()
                      #if ! JucePlugin_IsMidiEffect
@@ -16,17 +16,17 @@ PluginTemplateAudioProcessor::PluginTemplateAudioProcessor()
 {
 }
 
-PluginTemplateAudioProcessor::~PluginTemplateAudioProcessor()
+exodistAudioProcessor::~exodistAudioProcessor()
 {
 }
 
 
-const juce::String PluginTemplateAudioProcessor::getName() const
+const juce::String exodistAudioProcessor::getName() const
 {
     return JucePlugin_Name;
 }
 
-bool PluginTemplateAudioProcessor::acceptsMidi() const
+bool exodistAudioProcessor::acceptsMidi() const
 {
    #if JucePlugin_WantsMidiInput
     return true;
@@ -35,7 +35,7 @@ bool PluginTemplateAudioProcessor::acceptsMidi() const
    #endif
 }
 
-bool PluginTemplateAudioProcessor::producesMidi() const
+bool exodistAudioProcessor::producesMidi() const
 {
    #if JucePlugin_ProducesMidiOutput
     return true;
@@ -44,7 +44,7 @@ bool PluginTemplateAudioProcessor::producesMidi() const
    #endif
 }
 
-bool PluginTemplateAudioProcessor::isMidiEffect() const
+bool exodistAudioProcessor::isMidiEffect() const
 {
    #if JucePlugin_IsMidiEffect
     return true;
@@ -53,37 +53,37 @@ bool PluginTemplateAudioProcessor::isMidiEffect() const
    #endif
 }
 
-double PluginTemplateAudioProcessor::getTailLengthSeconds() const
+double exodistAudioProcessor::getTailLengthSeconds() const
 {
     return 0.0;
 }
 
-int PluginTemplateAudioProcessor::getNumPrograms()
+int exodistAudioProcessor::getNumPrograms()
 {
     return 1;   // NB: some hosts don't cope very well if you tell them there are 0 programs,
                 // so this should be at least 1, even if you're not really implementing programs.
 }
 
-int PluginTemplateAudioProcessor::getCurrentProgram()
+int exodistAudioProcessor::getCurrentProgram()
 {
     return 0;
 }
 
-void PluginTemplateAudioProcessor::setCurrentProgram (int index)
+void exodistAudioProcessor::setCurrentProgram (int index)
 {
 }
 
-const juce::String PluginTemplateAudioProcessor::getProgramName (int index)
+const juce::String exodistAudioProcessor::getProgramName (int index)
 {
     return {};
 }
 
-void PluginTemplateAudioProcessor::changeProgramName (int index, const juce::String& newName)
+void exodistAudioProcessor::changeProgramName (int index, const juce::String& newName)
 {
 }
 
 
-void PluginTemplateAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void exodistAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     juce::dsp::ProcessSpec spec;
 
@@ -95,14 +95,14 @@ void PluginTemplateAudioProcessor::prepareToPlay (double sampleRate, int samples
     rightChain.prepare(spec);
 }
 
-void PluginTemplateAudioProcessor::releaseResources()
+void exodistAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
-bool PluginTemplateAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
+bool exodistAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
 {
   #if JucePlugin_IsMidiEffect
     juce::ignoreUnused (layouts);
@@ -127,7 +127,7 @@ bool PluginTemplateAudioProcessor::isBusesLayoutSupported (const BusesLayout& la
 }
 #endif
 
-void PluginTemplateAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
+void exodistAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
     juce::ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
@@ -155,25 +155,25 @@ void PluginTemplateAudioProcessor::processBlock (juce::AudioBuffer<float>& buffe
 }
 
 
-bool PluginTemplateAudioProcessor::hasEditor() const
+bool exodistAudioProcessor::hasEditor() const
 {
     return true; // (change this to false if you choose to not supply an editor)
 }
 
-juce::AudioProcessorEditor* PluginTemplateAudioProcessor::createEditor()
+juce::AudioProcessorEditor* exodistAudioProcessor::createEditor()
 {
     // return new PluginTemplateAudioProcessorEditor(*this);
     return new juce::GenericAudioProcessorEditor(*this);
 }
 
 
-void PluginTemplateAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
+void exodistAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
 {
     juce::MemoryOutputStream mos(destData, true);
     apvts.state.writeToStream(mos);
 }
 
-void PluginTemplateAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
+void exodistAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     auto tree = juce::ValueTree::readFromData(data, sizeInBytes);
     if (tree.isValid())
@@ -185,5 +185,5 @@ void PluginTemplateAudioProcessor::setStateInformation (const void* data, int si
 //==============================================================================
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new PluginTemplateAudioProcessor();
+    return new exodistAudioProcessor();
 }
