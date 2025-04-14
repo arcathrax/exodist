@@ -2,6 +2,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "GUI/CustomLookAndFeel.h"
 
 
 class exodistAudioProcessorEditor  : public juce::AudioProcessorEditor
@@ -16,6 +17,8 @@ public:
 
 private:
     exodistAudioProcessor& audioProcessor;
+    
+    CustomLookAndFeel customLookAndFeel;
     
     juce::Slider gainSlider;
     juce::Slider softnessSlider;

@@ -13,7 +13,8 @@
               file="Source/GUI/CustomLookAndFeel.cpp"/>
         <FILE id="xIckvA" name="CustomLookAndFeel.h" compile="0" resource="0"
               file="Source/GUI/CustomLookAndFeel.h"/>
-        <FILE id="zfJUsy" name="knob.png" compile="0" resource="1" file="Source/GUI/knob.png"/>
+        <FILE id="nOKl1z" name="knob_bg.png" compile="0" resource="1" file="Source/GUI/knob_bg.png"/>
+        <FILE id="YsIuqP" name="knob_fg.png" compile="0" resource="1" file="Source/GUI/knob_fg.png"/>
       </GROUP>
       <FILE id="a2vRXE" name="Parameters.cpp" compile="1" resource="0" file="Source/Parameters.cpp"/>
       <FILE id="tyyzc1" name="Parameters.h" compile="0" resource="0" file="Source/Parameters.h"/>

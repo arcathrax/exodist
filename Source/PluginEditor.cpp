@@ -9,6 +9,14 @@ exodistAudioProcessorEditor::exodistAudioProcessorEditor (exodistAudioProcessor&
     softnessSlider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     thresholdSlider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     
+    gainSlider.setLookAndFeel(&customLookAndFeel);
+    softnessSlider.setLookAndFeel(&customLookAndFeel);
+    thresholdSlider.setLookAndFeel(&customLookAndFeel);
+    
+    addAndMakeVisible(gainSlider);
+    addAndMakeVisible(softnessSlider);
+    addAndMakeVisible(thresholdSlider);
+    
     setSize (600, 400);
 }
 
@@ -27,6 +35,31 @@ void exodistAudioProcessorEditor::paint (juce::Graphics& g)
 
 void exodistAudioProcessorEditor::resized()
 {
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
+    const int gainSize = 200;
+    const int otherSize = 75;
+
+    // Mitte – gainSlider
+    gainSlider.setBounds(
+        getWidth() / 2 - gainSize / 2,
+        getHeight() / 2 - gainSize / 2,
+        gainSize,
+        gainSize
+    );
+
+    // Unten links – softnessSlider (80 px von links, 50 px vom Boden)
+    softnessSlider.setBounds(
+        70,
+        getHeight() - otherSize - 60,
+        otherSize,
+        otherSize
+    );
+
+    // Unten rechts – thresholdSlider (80 px von rechts, 50 px vom Boden)
+    thresholdSlider.setBounds(
+        getWidth() - otherSize - 70,
+        getHeight() - otherSize - 60,
+        otherSize,
+        otherSize
+    );
 }
+
