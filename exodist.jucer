@@ -7,6 +7,10 @@
               cppLanguageStandard="20">
   <MAINGROUP id="PsYr69" name="exodist">
     <GROUP id="{6D2800E9-FD34-2B98-E4F3-587630062054}" name="Source">
+      <GROUP id="{6DB62CD7-42DA-BF80-B3A0-DB5C458F9B95}" name="DSP">
+        <FILE id="CYjUTe" name="ExoAlgoProcessor.h" compile="0" resource="0"
+              file="Source/DSP/ExoAlgoProcessor.h"/>
+      </GROUP>
       <GROUP id="{D1DCABDF-2CCB-5087-411D-22E69A78B742}" name="GUI">
         <FILE id="kRDJYn" name="background.png" compile="0" resource="1" file="Source/GUI/background.png"/>
         <FILE id="xogSyi" name="CustomLookAndFeel.cpp" compile="1" resource="0"

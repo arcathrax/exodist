@@ -91,8 +91,7 @@ void exodistAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBloc
     spec.numChannels = getTotalNumOutputChannels();
     spec.sampleRate = sampleRate;
 
-    leftChain.prepare(spec);
-    rightChain.prepare(spec);
+    chain.prepare(spec);
 }
 
 void exodistAudioProcessor::releaseResources()
@@ -139,19 +138,20 @@ void exodistAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     }
     
     juce::dsp::AudioBlock<float> block(buffer);
-    
-    auto& leftGainProcessor = leftChain.template get<GainProcessorIndex>();
-    auto& rightGainProcessor = rightChain.template get<GainProcessorIndex>();
-    
-    float gain = params.gainParam->get();
-    
-    leftGainProcessor.setGainDecibels(gain);
-    rightGainProcessor.setGainDecibels(gain);
-    
     juce::dsp::ProcessContextReplacing<float> context(block);
     
-    leftChain.process(context);
-    rightChain.process(context);
+    auto& gainProcessor = chain.template get<GainProcessorIndex>();
+    auto& exoAlgoProcessor = chain.template get<ExoAlgoProcessorIndex>();
+    
+    float gain = params.gainParam->get();
+    float softness = params.softnessParam->get();
+    float treshold = params.thresholdParam->get();
+    
+    gainProcessor.setGainDecibels(gain);
+    exoAlgoProcessor.setSoftness(softness);
+    exoAlgoProcessor.setThreshold(treshold);
+    
+    chain.process(context);
 }
 
 

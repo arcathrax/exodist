@@ -2,6 +2,7 @@
 
 #include <JuceHeader.h>
 #include "Parameters.h"
+#include "DSP/ExoAlgoProcessor.h"
 
 class exodistAudioProcessor  : public juce::AudioProcessor
 {
@@ -50,13 +51,15 @@ public:
 private:
     // ProcessorChain setup
     using ProcessorChain = juce::dsp::ProcessorChain<
-        juce::dsp::Gain<float>
+        juce::dsp::Gain<float>,
+        ExoAlgoProcessor<float>
     >;
-    ProcessorChain leftChain, rightChain;
+    ProcessorChain chain;
     
     enum
     {
-        GainProcessorIndex
+        GainProcessorIndex,
+        ExoAlgoProcessorIndex
     };
 
     //==============================================================================
