@@ -6,6 +6,7 @@ Parameters::Parameters(juce::AudioProcessorValueTreeState& apvts)
     softnessParam = dynamic_cast<juce::AudioParameterFloat*>(apvts.getParameter(softnessParamID.getParamID()));
     thresholdParam = dynamic_cast<juce::AudioParameterFloat*>(apvts.getParameter(thresholdParamID.getParamID()));
     volumeParam = dynamic_cast<juce::AudioParameterFloat*>(apvts.getParameter(volumeParamID.getParamID()));
+    mixParam = dynamic_cast<juce::AudioParameterFloat*>(apvts.getParameter(mixParamID.getParamID()));
 }
 
 
@@ -18,12 +19,12 @@ juce::AudioProcessorValueTreeState::ParameterLayout Parameters::createParameterL
         "gain",
         juce::NormalisableRange<float>
         (
-            0.75f,
-            12.0f,
+            0.0f,
+            24.0f,
             0.000001f,
             0.5f
         ),
-        1.0f
+        0.0f
     );
     auto softnessParameter = std::make_unique<juce::AudioParameterFloat>(
         softnessParamID,
@@ -55,11 +56,23 @@ juce::AudioProcessorValueTreeState::ParameterLayout Parameters::createParameterL
         juce::NormalisableRange<float>
         (
             0.0f,
-            24.0f,
+            12.0f,
             0.000001f,
             0.5f
         ),
-        12.0f
+        0.0f
+    );
+    auto mixParameter = std::make_unique<juce::AudioParameterFloat>(
+        mixParamID,
+        "mix",
+        juce::NormalisableRange<float>
+        (
+            0.f,
+            1.f,
+            0.000001f,
+            1.f
+        ),
+        1.0f
     );
 
     auto parameters = std::make_unique<
@@ -71,7 +84,8 @@ juce::AudioProcessorValueTreeState::ParameterLayout Parameters::createParameterL
         std::move(gainParameter),
         std::move(softnessParameter),
         std::move(thresholdParameter),
-        std::move(volumeParameter)
+        std::move(volumeParameter),
+        std::move(mixParameter)
      );
 
     layout.add

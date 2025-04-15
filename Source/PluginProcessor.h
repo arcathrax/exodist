@@ -51,6 +51,7 @@ public:
 private:
     // ProcessorChain setup
     using ProcessorChain = juce::dsp::ProcessorChain<
+        juce::dsp::DryWetMixer<float>,
         juce::dsp::Gain<float>,
         ExoAlgoProcessor<float>,
         juce::dsp::Gain<float>
@@ -59,6 +60,7 @@ private:
     
     enum
     {
+        DryWetMixerIndex,
         GainProcessorIndex,
         ExoAlgoProcessorIndex,
         VolumeIndex

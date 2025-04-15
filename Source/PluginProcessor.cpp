@@ -14,6 +14,9 @@ exodistAudioProcessor::exodistAudioProcessor()
                        ),params(apvts)
 #endif
 {
+    auto& dryWetMixer = chain.template get<DryWetMixerIndex>();
+    dryWetMixer.setMixingRule(juce::dsp::DryWetMixingRule::linear);
+    dryWetMixer.setWetLatency(0.0f);
 }
 
 exodistAudioProcessor::~exodistAudioProcessor()
@@ -92,6 +95,9 @@ void exodistAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBloc
     spec.sampleRate = sampleRate;
 
     chain.prepare(spec);
+
+    auto& dryWetMixer = chain.template get<DryWetMixerIndex>();
+    dryWetMixer.prepare(spec);
 }
 
 void exodistAudioProcessor::releaseResources()
@@ -136,13 +142,15 @@ void exodistAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     {
         buffer.clear (i, 0, buffer.getNumSamples());
     }
-    
-    juce::dsp::AudioBlock<float> block(buffer);
-    juce::dsp::ProcessContextReplacing<float> context(block);
-    
+
     auto& gainProcessor = chain.template get<GainProcessorIndex>();
     auto& exoAlgoProcessor = chain.template get<ExoAlgoProcessorIndex>();
     auto& volumeProcessor = chain.template get<VolumeIndex>();
+    auto& dryWetMixer = chain.template get<DryWetMixerIndex>();
+    
+    juce::dsp::AudioBlock<float> block(buffer);
+    juce::dsp::ProcessContextReplacing<float> context(block);
+    dryWetMixer.pushDrySamples(block);
     
     float gain = params.gainParam->get();
     float softness = params.softnessParam->get();
@@ -154,7 +162,13 @@ void exodistAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     exoAlgoProcessor.setThreshold(treshold);
     volumeProcessor.setGainDecibels(volume);
     
-    chain.process(context);
+    // chain.process(context);
+    gainProcessor.process(context);
+    exoAlgoProcessor.process(context);
+    volumeProcessor.process(context);
+
+    dryWetMixer.setWetMixProportion(params.mixParam->get());
+    dryWetMixer.mixWetSamples(block);
 }
 
 

@@ -30,6 +30,7 @@ private:
     juce::AudioProcessorValueTreeState::SliderAttachment softnessSliderAttachment{audioProcessor.apvts, softnessParamID.getParamID(), softnessSlider};
     juce::AudioProcessorValueTreeState::SliderAttachment thresholdSliderAttachment{audioProcessor.apvts, thresholdParamID.getParamID(), thresholdSlider};
     juce::AudioProcessorValueTreeState::SliderAttachment volumeSliderAttachment{ audioProcessor.apvts, volumeParamID.getParamID(), volumeSlider };
+    juce::AudioProcessorValueTreeState::SliderAttachment mixSliderAttachment{ audioProcessor.apvts, mixParamID.getParamID(), mixSlider };
     
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (exodistAudioProcessorEditor)
