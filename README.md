@@ -1,8 +1,9 @@
 # Description
+*exodist* is an open-source audio plugin. This audio plugin is a clipper and is mainly focussed around distortion. This can be from soft to heavy distortion.
+
 
 # How to install
 ## Windows
-
 1. Go onto the [releases](https://github.com/arcathrax/exodist/releases) page.
 2. Download the latest windows version (should have `win-x64` in the name).
 3. Unzip the archive.
@@ -11,7 +12,6 @@
 
 
 ## MacOS
-
 1. Go onto the [releases](https://github.com/arcathrax/exodist/releases) page.
 2. Download the latest windows version (should have `macos-universal` in the name).
 3. Unzip the archive.
@@ -22,7 +22,6 @@
 
 
 # Parameters
-
 - **gain**: set the gain before the clipping algorithm.
 - **softness**: adjust how hard the algorithm is.
 - **threshold**: adjust, when the distortion starts.
@@ -31,5 +30,4 @@
 
 
 # Sources
-
 - textures: [texturelabs.org](https://texturelabs.org/)
