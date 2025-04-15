@@ -43,7 +43,7 @@ void exodistAudioProcessorEditor::resized()
 {
     const int gainSize = 200;
     const int mediumSize = 75;
-    const int smallSize = 35;
+    const int smallSize = 50;
 
     gainSlider.setBounds(
         getWidth() / 2 - gainSize / 2,
@@ -67,14 +67,14 @@ void exodistAudioProcessorEditor::resized()
     );
 
     mixSlider.setBounds(
-        90,
+        80,
         80,
         smallSize,
         smallSize
     );
 
     volumeSlider.setBounds(
-        getWidth() - smallSize - 90,
+        getWidth() - smallSize - 80,
         80,
         smallSize,
         smallSize

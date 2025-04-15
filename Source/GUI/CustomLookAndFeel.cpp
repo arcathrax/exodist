@@ -28,13 +28,13 @@ void CustomLookAndFeel::drawRotarySlider (juce::Graphics& g, int x, int y, int w
                 rotaryStartAngle,
                 angle,
                 true);
-    g.setColour(juce::Colour(0xFF750002).brighter(0.2f));
+    g.setColour(juce::Colour(0xFF820104));
     g.strokePath(valueArc, strokeType);
     
     // draw background
     auto backgroundImage = juce::ImageCache::getFromMemory(BinaryData::knob_bg_png, BinaryData::knob_bg_pngSize);
     juce::Rectangle<float> rectangle (x, y, width, height);
-    rectangle = rectangle.reduced(10.f);
+    rectangle = rectangle.reduced(7.5f);
     g.setOpacity(1.f);
     g.drawImage(backgroundImage, rectangle, juce::RectanglePlacement::stretchToFit);
     
