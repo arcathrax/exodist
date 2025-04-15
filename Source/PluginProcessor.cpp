@@ -142,14 +142,17 @@ void exodistAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     
     auto& gainProcessor = chain.template get<GainProcessorIndex>();
     auto& exoAlgoProcessor = chain.template get<ExoAlgoProcessorIndex>();
+    auto& volumeProcessor = chain.template get<VolumeIndex>();
     
     float gain = params.gainParam->get();
     float softness = params.softnessParam->get();
     float treshold = params.thresholdParam->get();
+    float volume = params.volumeParam->get();
     
     gainProcessor.setGainDecibels(gain);
     exoAlgoProcessor.setSoftness(softness);
     exoAlgoProcessor.setThreshold(treshold);
+    volumeProcessor.setGainDecibels(volume);
     
     chain.process(context);
 }

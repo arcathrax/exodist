@@ -52,14 +52,16 @@ private:
     // ProcessorChain setup
     using ProcessorChain = juce::dsp::ProcessorChain<
         juce::dsp::Gain<float>,
-        ExoAlgoProcessor<float>
+        ExoAlgoProcessor<float>,
+        juce::dsp::Gain<float>
     >;
     ProcessorChain chain;
     
     enum
     {
         GainProcessorIndex,
-        ExoAlgoProcessorIndex
+        ExoAlgoProcessorIndex,
+        VolumeIndex
     };
 
     //==============================================================================
