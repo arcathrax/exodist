@@ -23,6 +23,8 @@ private:
     juce::Slider gainSlider;
     juce::Slider softnessSlider;
     juce::Slider thresholdSlider;
+    juce::Slider mixSlider;
+    juce::Slider volumeSlider;
     
     juce::AudioProcessorValueTreeState::SliderAttachment gainSliderAttachment{audioProcessor.apvts, gainParamID.getParamID(), gainSlider};
     juce::AudioProcessorValueTreeState::SliderAttachment softnessSliderAttachment{audioProcessor.apvts, softnessParamID.getParamID(), softnessSlider};

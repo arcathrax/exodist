@@ -8,14 +8,20 @@ exodistAudioProcessorEditor::exodistAudioProcessorEditor (exodistAudioProcessor&
     gainSlider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     softnessSlider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     thresholdSlider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
+    mixSlider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
+    volumeSlider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     
     gainSlider.setLookAndFeel(&customLookAndFeel);
     softnessSlider.setLookAndFeel(&customLookAndFeel);
     thresholdSlider.setLookAndFeel(&customLookAndFeel);
+    mixSlider.setLookAndFeel(&customLookAndFeel);
+    volumeSlider.setLookAndFeel(&customLookAndFeel);
     
     addAndMakeVisible(gainSlider);
     addAndMakeVisible(softnessSlider);
     addAndMakeVisible(thresholdSlider);
+    addAndMakeVisible(mixSlider);
+    addAndMakeVisible(volumeSlider);
     
     setSize (600, 400);
 }
@@ -36,9 +42,9 @@ void exodistAudioProcessorEditor::paint (juce::Graphics& g)
 void exodistAudioProcessorEditor::resized()
 {
     const int gainSize = 200;
-    const int otherSize = 75;
+    const int mediumSize = 75;
+    const int smallSize = 35;
 
-    // Mitte – gainSlider
     gainSlider.setBounds(
         getWidth() / 2 - gainSize / 2,
         getHeight() / 2 - gainSize / 2,
@@ -46,20 +52,33 @@ void exodistAudioProcessorEditor::resized()
         gainSize
     );
 
-    // Unten links – softnessSlider (80 px von links, 50 px vom Boden)
     softnessSlider.setBounds(
         70,
-        getHeight() - otherSize - 60,
-        otherSize,
-        otherSize
+        getHeight() - mediumSize - 60,
+        mediumSize,
+        mediumSize
     );
 
-    // Unten rechts – thresholdSlider (80 px von rechts, 50 px vom Boden)
     thresholdSlider.setBounds(
-        getWidth() - otherSize - 70,
-        getHeight() - otherSize - 60,
-        otherSize,
-        otherSize
+        getWidth() - mediumSize - 70,
+        getHeight() - mediumSize - 60,
+        mediumSize,
+        mediumSize
+    );
+
+    mixSlider.setBounds(
+        90,
+        80,
+        smallSize,
+        smallSize
+    );
+
+    volumeSlider.setBounds(
+        getWidth() - smallSize - 90,
+        80,
+        smallSize,
+        smallSize
     );
 }
+
 
